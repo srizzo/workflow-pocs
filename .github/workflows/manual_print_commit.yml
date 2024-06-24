@@ -1,0 +1,16 @@
+name: Manual Print Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: 'Commit hash to print'
+        required: true
+        type: string
+
+jobs:
+  print-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Commit Hash
+        run: echo "The provided commit hash is ${{ github.event.inputs.commit_hash }}"
