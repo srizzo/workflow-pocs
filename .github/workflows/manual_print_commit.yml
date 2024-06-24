@@ -14,3 +14,4 @@ jobs:
     steps:
       - name: Print Commit Hash
         run: echo "The provided commit hash is ${{ github.event.inputs.commit_hash }}"
+
