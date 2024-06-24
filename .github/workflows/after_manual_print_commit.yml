@@ -1,0 +1,22 @@
+name: After Manual Print Commit
+
+on:
+  workflow_run:
+    workflows: ["Manual Print Commit"]
+    types:
+      - completed
+
+jobs:
+  after-manual-print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Manual Print Commit workflow status
+        run: |
+          if [[ "${{ github.event.workflow_run.conclusion }}" == "success" ]]; then
+            echo "The Manual Print Commit workflow completed successfully!"
+            echo "It was triggered by a ${{ github.event.workflow_run.event }} event."
+            echo "The run id was ${{ github.event.workflow_run.id }}."
+          else
+            echo "The Manual Print Commit workflow did not complete successfully."
+            echo "Its status was: ${{ github.event.workflow_run.conclusion }}"
+          fi
