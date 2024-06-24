@@ -1,0 +1,32 @@
+name: Release Edited
+
+on:
+  release:
+    types: [edited]
+
+jobs:
+  release-edited:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print Release Information
+        run: |
+          echo "A release has been edited!"
+          echo "Release Tag: ${{ github.event.release.tag_name }}"
+          echo "Release Name: ${{ github.event.release.name }}"
+          echo "Is it a pre-release? ${{ github.event.release.prerelease }}"
+          echo "Is it a draft? ${{ github.event.release.draft }}"
+          
+      - name: Check Pre-release Status Change
+        run: |
+          if [[ "${{ github.event.changes.prerelease.from }}" != "${{ github.event.release.prerelease }}" ]]; then
+            echo "Pre-release status changed from ${{ github.event.changes.prerelease.from }} to ${{ github.event.release.prerelease }}"
+          fi
+
+      - name: Check Draft Status Change
+        run: |
+          if [[ "${{ github.event.changes.draft.from }}" != "${{ github.event.release.draft }}" ]]; then
+            echo "Draft status changed from ${{ github.event.changes.draft.from }} to ${{ github.event.release.draft }}"
+          fi

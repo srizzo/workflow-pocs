@@ -2,7 +2,7 @@ name: Process Release
 
 on:
   release:
-#    types: [published]
+    types: [published]
 
 jobs:
   print-message:
