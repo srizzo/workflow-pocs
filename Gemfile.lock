@@ -19,11 +19,14 @@ GEM
       aws-sigv4 (~> 1.8)
     aws-sigv4 (1.8.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    base64 (0.2.0)
     faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
     jmespath (1.6.2)
+    jwt (2.8.2)
+      base64
     net-http (0.4.1)
       uri
     octokit (9.1.0)
@@ -40,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3 (~> 1.153)
+  jwt (~> 2.8)
   octokit (~> 9.1)
 
 BUNDLED WITH
