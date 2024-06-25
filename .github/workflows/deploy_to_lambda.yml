@@ -17,8 +17,7 @@ jobs:
         run: |
           bundle install --path vendor/bundle
       - name: Create deployment package
-        run: |
-          zip -r deployment.zip . -x '*.git*' -x 'tmp/**/*'
+        run: "zip -r deployment.zip . -x '*.git*' -x 'tmp/**/*'"
       - name: "Configure AWS Credentials" Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
