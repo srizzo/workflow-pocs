@@ -40,8 +40,25 @@ jobs:
       
       - name: Deploy to Lambda
         run: |
-          aws lambda update-function-code --function-name ruby-lambda-function --zip-file fileb://deployment.zip
-          aws lambda update-function-configuration --function-name ruby-lambda-function \
+          # Check if the function exists
+          if ! aws lambda get-function --function-name ruby-lambda-function &> /dev/null; then
+            echo "Function does not exist. Creating new function..."
+            aws lambda create-function \
+              --function-name ruby-lambda-function \
+              --runtime ruby3.2 \
+              --handler lambda_function.handler \
+              --role ${{ secrets.AWS_LAMBDA_EXECUTION_ROLE }} \
+              --zip-file fileb://deployment.zip
+          else
+            echo "Function exists. Updating function code..."
+            aws lambda update-function-code \
+              --function-name ruby-lambda-function \
+              --zip-file fileb://deployment.zip
+          fi
+          
+          # Update function configuration
+          aws lambda update-function-configuration \
+            --function-name ruby-lambda-function \
             --handler lambda_function.handler \
             --runtime ruby3.2 \
             --timeout 10 \
