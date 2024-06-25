@@ -1,11 +1,16 @@
 name: deploy to lambda
 on:
   release:
-    types: [published]
+    types: [ published ]
   workflow_run:
-    workflows: ["Create Tag and Pre-Release"]
+    workflows: [ "Create Tag and Pre-Release" ]
     types:
       - completed
+
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   deploy_to_lambda:
     name: deploy lambda function
