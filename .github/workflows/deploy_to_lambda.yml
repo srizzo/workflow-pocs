@@ -1,7 +1,9 @@
 name: deploy to lambda
-on: [ push ]
+on:
+  release:
+    types: [published]
 jobs:
-  deploy_zip:
+  deploy_to_lambda:
     name: deploy lambda function
     runs-on: ubuntu-latest
     steps:
