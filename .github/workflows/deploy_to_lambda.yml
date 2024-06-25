@@ -23,7 +23,7 @@ jobs:
       - name: Create deployment package
         run: |
           zip -r deployment.zip . -x .git/\* -x .github/\* -x tmp/\*
-      - name: "Configure AWS Credentials" Action for GitHub Actions
+      - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
