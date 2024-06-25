@@ -18,26 +18,26 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@v4
-      
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-      
+
       - name: Install dependencies
         run: |
           bundle install --path vendor/bundle
-      
+
       - name: Create deployment package
         run: |
           zip -r deployment.zip . -x .git/\* -x .github/\* -x tmp/\*
-      
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: ${{ secrets.AWS_REGION }}
-      
+
       - name: Deploy to Lambda
         run: |
           # Check if the function exists
@@ -46,7 +46,7 @@ jobs:
             aws lambda create-function \
               --function-name ruby-lambda-function \
               --runtime ruby3.2 \
-              --handler lambda_function.handler \
+              --handler lambda_function.lambda_handler \
               --role ${{ secrets.AWS_LAMBDA_EXECUTION_ROLE }} \
               --zip-file fileb://deployment.zip
           else
@@ -59,7 +59,7 @@ jobs:
           # Update function configuration
           aws lambda update-function-configuration \
             --function-name ruby-lambda-function \
-            --handler lambda_function.handler \
+            --handler lambda_function.lambda_handler \
             --runtime ruby3.2 \
             --timeout 10 \
             --memory-size 128
