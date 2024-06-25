@@ -36,8 +36,6 @@ jobs:
       - name: default deploy
         uses: appleboy/lambda-action@v0.0.2
         with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: ruby-lambda-function
           zip_file: deployment.zip
@@ -46,4 +44,3 @@ jobs:
           handler: lambda_function.handler
           role: ${{ secrets.AWS_LAMBDA_IAM_ROLE_ARN }}
           runtime: ruby3.2
-
