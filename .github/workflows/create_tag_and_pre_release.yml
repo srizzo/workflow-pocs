@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  create-tag-and-release:
+  create-tag-and-pre-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
