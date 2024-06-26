@@ -4,7 +4,7 @@ runs:
   using: "composite"
   steps:
     - name: Run Step A
-      uses: ./.github/actions/step_a.action.yml
-    
+      uses: ./.github/actions/step_a
+
     - name: Run Step B
-      uses: ./.github/actions/step_b.action.yml
+      uses: ./.github/actions/step_b
