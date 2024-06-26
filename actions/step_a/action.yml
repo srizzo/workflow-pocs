@@ -1,0 +1,8 @@
+name: 'Step A Action'
+description: 'Echoes the name of Step A'
+runs:
+  using: "composite"
+  steps:
+    - name: Echo Step A
+      shell: bash
+      run: echo "This is Step A"

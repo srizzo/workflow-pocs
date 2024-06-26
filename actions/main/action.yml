@@ -1,0 +1,10 @@
+name: 'Main Action'
+description: 'Composite action that calls Step A and Step B'
+runs:
+  using: "composite"
+  steps:
+    - name: Run Step A
+      uses: ./actions/step_a
+
+    - name: Run Step B
+      uses: ./actions/step_b
