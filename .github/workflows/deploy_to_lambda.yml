@@ -15,6 +15,7 @@ jobs:
   deploy_to_lambda:
     name: deploy lambda function
     runs-on: ubuntu-latest
+    environment: awssandbox
     steps:
       - name: checkout source code
         uses: actions/checkout@v4
