@@ -1,8 +1,0 @@
-name: 'Step B Action'
-description: 'Echoes the name of Step B'
-runs:
-  using: "composite"
-  steps:
-    - name: Echo Step B
-      shell: bash
-      run: echo "This is Step B"
