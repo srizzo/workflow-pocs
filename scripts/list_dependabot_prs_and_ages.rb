@@ -3,15 +3,12 @@ require 'date'
 
 client = github_app_installation_client(ENV['TASKMATES_INSTALLATION_ID'])
 
-org_name = 'taskmates'
+results = client.list_app_installation_repositories
 
-# Get all repositories in the organization
-org_repos = client.org_repos(org_name, type: 'all')
-
-puts "Listing open Dependabot PRs and their ages for #{org_name} organization:"
+puts "Listing open Dependabot PRs and their ages:"
 puts "------------------------------------------------------------"
 
-org_repos.each do |repo|
+results[:repositories].each do |repo|
   begin
     # Get all open pull requests for the repository
     pulls = client.pull_requests(repo.full_name, state: 'open')
