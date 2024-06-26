@@ -1,0 +1,13 @@
+name: App Managed Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  app-managed-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Commit Hash
+        run: echo "App Managed Workflow"
