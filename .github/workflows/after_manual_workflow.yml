@@ -1,13 +1,13 @@
-name: After Manual Print Commit
+name: After Manual Workflow
 
 on:
   workflow_run:
-    workflows: ["Manual Print Commit"]
+    workflows: ["Manual Workflow"]
     types:
       - completed
 
 jobs:
-  after-manual-print:
+  after-manual-workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Check Manual Print Commit workflow status

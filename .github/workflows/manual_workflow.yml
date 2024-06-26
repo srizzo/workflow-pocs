@@ -1,4 +1,4 @@
-name: Manual Print Commit
+name: Manual Workflow
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  print-commit:
+  manual-workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Print Commit Hash
