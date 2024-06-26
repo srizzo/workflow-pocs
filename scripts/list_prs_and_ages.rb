@@ -1,7 +1,7 @@
-require_relative 'github_app_client'
+require_relative '../lib/github_app_installation_client'
 require 'date'
 
-client = github_app_client
+client = github_app_installation_client(ENV['SRIZZO_INSTALLATION_ID'])
 
 org_name = 'taskmates'
 

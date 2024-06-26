@@ -1,4 +1,4 @@
-require_relative 'github_app_installation_client'
+require_relative '../lib/github_client'
 
 require 'dotenv'
 Dotenv.load('./.env.production.local')
@@ -7,14 +7,14 @@ Dotenv.load('./.env.production.local')
 app_id = ENV['GITHUB_APP_ID']
 
 # Read the private key
-client = github_app_installation_client(app_id)
+client = github_client(app_id)
 
 # Retrieve your installations
 installations = client.find_installations
 
 installations.each do |installation|
   installation_id = installation.id
-  pp installation[:account][:login]
+  # pp installation[:account][:login]
 
   # Exchange the JWT for an installation access token
   access_token = client.create_app_installation_access_token(installation_id)[:token]

@@ -2,7 +2,7 @@ require 'octokit'
 require 'jwt'
 require 'openssl'
 
-def github_app_installation_client(app_id)
+def github_client(app_id)
   private_key = OpenSSL::PKey::RSA.new(Base64.decode64(ENV['GITHUB_PRIVATE_KEY']))
 
   # Generate the JWT
