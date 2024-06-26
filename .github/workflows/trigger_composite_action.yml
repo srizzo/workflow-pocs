@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Composite Action
-        uses: srizzo/workflow-pocs/main_action
+        uses: srizzo/workflow-pocs/main_action@main
