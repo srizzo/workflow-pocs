@@ -1,6 +1,4 @@
-require 'octokit'
-require 'jwt'
-require 'openssl'
+require_relative 'github_app_installation_client'
 
 require 'dotenv'
 Dotenv.load('./.env.production.local')
@@ -9,19 +7,7 @@ Dotenv.load('./.env.production.local')
 app_id = ENV['GITHUB_APP_ID']
 
 # Read the private key
-private_key = OpenSSL::PKey::RSA.new(Base64.decode64(ENV['GITHUB_PRIVATE_KEY']))
-
-# Generate the JWT
-payload = {
-  iat: Time.now.to_i,
-  exp: Time.now.to_i + (10 * 60),
-  iss: app_id
-}
-
-jwt = JWT.encode(payload, private_key, 'RS256')
-
-# Create an Octokit client authenticated as the GitHub App
-client = Octokit::Client.new(bearer_token: jwt)
+client = github_app_installation_client(app_id)
 
 # Retrieve your installations
 installations = client.find_installations
