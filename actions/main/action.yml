@@ -4,7 +4,7 @@ runs:
   using: "composite"
   steps:
     - name: Run Step A
-      uses: ./actions/step_a
+      uses: srizzo/workflow-pocs/actions/step_a
 
     - name: Run Step B
-      uses: ./actions/step_b
+      uses: srizzo/workflow-pocs/actions/step_b
