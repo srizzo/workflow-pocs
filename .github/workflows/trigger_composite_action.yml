@@ -1,4 +1,4 @@
-name: Manual Workflow
+name: Trigger Composite Action
 
 on:
   workflow_dispatch:
