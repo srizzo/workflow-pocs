@@ -7,5 +7,7 @@ jobs:
   trigger-composite-action:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Trigger Composite Action
         uses: ./actions/main
