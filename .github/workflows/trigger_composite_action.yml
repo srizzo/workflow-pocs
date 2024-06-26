@@ -1,0 +1,11 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Composite Action
+        uses: ./actions/main/action.yml
