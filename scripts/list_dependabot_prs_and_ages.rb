@@ -1,7 +1,7 @@
-require_relative 'github_client'
+require_relative 'github_app_client'
 require 'date'
 
-client = github_client
+client = github_app_client
 
 org_name = 'taskmates'
 
@@ -15,13 +15,13 @@ org_repos.each do |repo|
   begin
     # Get all open pull requests for the repository
     pulls = client.pull_requests(repo.full_name, state: 'open')
-    
+
     dependabot_pulls = pulls.select { |pull| pull.user.login == 'dependabot[bot]' }
-    
+
     dependabot_pulls.each do |pull|
       # Calculate the age of the PR in days
       age_in_days = (Date.today - pull.created_at.to_date).to_i
-      
+
       puts "Repo: #{repo.name}"
       puts "PR ##{pull.number}: #{pull.title}"
       puts "Age: #{age_in_days} days"

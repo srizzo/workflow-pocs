@@ -1,6 +1,6 @@
-require_relative 'github_client'
+require_relative 'github_app_client'
 
-client = github_client
+client = github_app_client
 
 org_name = 'taskmates'
 

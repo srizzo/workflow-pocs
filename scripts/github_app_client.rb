@@ -3,10 +3,10 @@ require 'octokit'
 require 'openssl'
 require 'jwt'
 require 'base64'
-require 'dotenv/load'
+require 'dotenv'
 Dotenv.load('./.env.production.local')
 
-def github_client
+def github_app_client
   private_key = OpenSSL::PKey::RSA.new(Base64.decode64(ENV['GITHUB_PRIVATE_KEY']))
   payload = {
     iat: Time.now.to_i - 60,
