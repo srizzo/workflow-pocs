@@ -3,6 +3,7 @@ require 'base64'
 require 'octokit'
 require 'openssl'
 require 'jwt'
+require 'aws-sdk-dynamodb'
 
 def lambda_handler(event:, context:)
   # Parse the incoming GitHub webhook payload
@@ -26,13 +27,14 @@ def lambda_handler(event:, context:)
 
   puts "Authenticated as GitHub App: #{app_info.name}"
 
-  # You can add more specific handling for different event types here
+  # Persist the payload to DynamoDB
+  persist_to_dynamodb(event, body)
 
   # Return a response
   {
     statusCode: 200,
     body: JSON.generate({
-                          message: "GitHub event processed successfully",
+                          message: "GitHub event processed and persisted successfully",
                           app_name: app_info.name
                         })
   }
@@ -55,4 +57,22 @@ def create_jwt_client(app_id, private_key)
 
   # Create an Octokit client with the JWT
   Octokit::Client.new(bearer_token: jwt)
+end
+
+def persist_to_dynamodb(event_type, payload)
+  dynamodb = Aws::DynamoDB::Client.new(region: 'eu-central-1')
+
+  item = {
+    id: SecureRandom.uuid,
+    event_type: event_type,
+    payload: payload.to_json,
+    timestamp: Time.now.to_i
+  }
+
+  dynamodb.put_item({
+    table_name: 'github-webhooks',
+    item: item
+  })
+rescue Aws::DynamoDB::Errors::ServiceError => e
+  puts "Error writing to DynamoDB: #{e.message}"
 end
