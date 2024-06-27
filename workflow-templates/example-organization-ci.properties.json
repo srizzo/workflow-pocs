@@ -1,5 +1,11 @@
 {
   "name": "Example Organization Workflow",
   "description": "Example Organization CI starter workflow.",
-  "iconName": "example-icon"
+  "iconName": "example-icon",
+  "categories": [
+    "Example"
+  ],
+  "filePatterns": [
+    "Gemfile"
+  ]
 }
