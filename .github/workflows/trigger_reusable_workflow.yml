@@ -1,0 +1,10 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  trigger-reusable-workflow:
+    uses: srizzo/workflow-pocs/.github/workflows/reusable-workflow.yml@main
+
