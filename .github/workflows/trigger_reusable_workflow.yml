@@ -1,4 +1,4 @@
-name: Manual Workflow
+name: Trigger Reusable Workflow
 
 on:
   workflow_dispatch:
@@ -6,5 +6,5 @@ on:
 
 jobs:
   trigger-reusable-workflow:
-    uses: srizzo/workflow-pocs/.github/workflows/reusable-workflow.yml@main
+    uses: srizzo/workflow-pocs/.github/workflows/reusable_workflow.yml@main
 
