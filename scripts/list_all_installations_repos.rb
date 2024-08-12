@@ -1,4 +1,4 @@
-require_relative '../lib/github_client'
+require_relative '../lib/github_app_client'
 
 require 'dotenv'
 Dotenv.load('./.env.production.local')
@@ -7,7 +7,7 @@ Dotenv.load('./.env.production.local')
 app_id = ENV['GITHUB_APP_ID']
 
 # Read the private key
-client = github_client(app_id)
+client = github_app_client(app_id)
 
 # Retrieve your installations
 installations = client.find_installations

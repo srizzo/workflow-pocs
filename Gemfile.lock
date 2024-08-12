@@ -26,11 +26,16 @@ GEM
     dotenv (3.1.2)
     faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
+    faraday-retry (2.2.1)
+      faraday (~> 2.0)
     jmespath (1.6.2)
     jwt (2.8.2)
       base64
+    multipart-post (2.4.1)
     net-http (0.4.1)
       uri
     octokit (9.1.0)
@@ -49,6 +54,8 @@ DEPENDENCIES
   aws-sdk-dynamodb (~> 1.114)
   aws-sdk-s3 (~> 1.153)
   dotenv (~> 3.1)
+  faraday-multipart (~> 1.0)
+  faraday-retry (~> 2.2)
   jwt (~> 2.8)
   octokit (~> 9.1)
 

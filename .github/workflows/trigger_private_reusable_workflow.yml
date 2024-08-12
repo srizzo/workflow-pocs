@@ -1,0 +1,11 @@
+name: Trigger Private Reusable Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-reusable-workflow:
+    uses: srizzo/private-action-example/.github/workflows/reusable-workflow-example.yml@v1
+    with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+

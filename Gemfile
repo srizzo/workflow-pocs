@@ -13,3 +13,6 @@ gem "jwt", "~> 2.8"
 gem "dotenv", "~> 3.1"
 
 gem "aws-sdk-dynamodb", "~> 1.114"
+
+gem "faraday-retry", "~> 2.2"
+gem "faraday-multipart", "~> 1.0"
