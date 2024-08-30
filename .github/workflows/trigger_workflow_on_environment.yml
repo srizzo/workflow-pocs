@@ -1,0 +1,25 @@
+name: Trigger workflow on environment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+          - development
+
+jobs:
+  trigger_workflow_on_environment:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: deploy
+        run: echo "Running workflow on ${{ github.event.inputs.environment }}"
