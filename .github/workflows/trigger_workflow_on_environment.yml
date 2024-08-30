@@ -19,7 +19,10 @@ on:
 jobs:
   trigger_workflow_on_environment:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
+    environment:
+      name: ${{ github.event.inputs.environment }}
+      url: ${{ format('https://example.com/preview/{0}', github.event.pull_request.number) }}
+
     steps:
       - name: deploy
         run: echo "Running workflow on ${{ github.event.inputs.environment }}"
