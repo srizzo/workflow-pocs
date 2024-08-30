@@ -1,4 +1,4 @@
-name: Trigger workflow on environment
+name: Trigger Workflow on Environment
 
 on:
   push:
